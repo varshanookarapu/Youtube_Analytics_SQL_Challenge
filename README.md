@@ -3,7 +3,16 @@
 
 This repository contains SQL practice questions covering **basic queries, aggregations, joins, window functions, and advanced analytics** using a video analytics dataset.
 
-I put the dataset code in the next file which you can copy paste in DB fiddle (https://www.db-fiddle.com/) and work on these challenges . 
+I put the dataset code in the next file which you can copy paste in DB fiddle (https://www.db-fiddle.com/) and work on these challenges .  You can intially test the data set by using the following queries 
+
+```sql
+SELECT * FROM Youtube.creators LIMIT 2;
+SELECT * FROM Youtube.videos LIMIT 2;
+SELECT * FROM Youtube.daily_views LIMIT 2;
+SELECT * FROM Youtube.comments LIMIT 2;
+SELECT * FROM Youtube.likes_dislikes LIMIT 2;
+SELECT * FROM Youtube.revenue LIMIT 2
+```
 ---
 
 ## 🟢 Basics (1–10)
