@@ -2,42 +2,56 @@
 
 1. List all videos and their creator names.
 ```sql
+SELECT  DISTINCT video_id,title,creator_name FROM Youtube.creators c
+LEFT JOIN Youtube.videos v ON
+c.creator_id = v.creator_id
+ORDER BY video_id
+
 ```
+<img width="1633" height="744" alt="image" src="https://github.com/user-attachments/assets/a13cd7c5-5077-4ea7-8ab0-f44c2980f4ed" />
+
 ---
    
 2. Count total videos per creator.
 ```sql
+SELECT  c.creator_id, COUNT(*) as video_count FROM Youtube.creators c
+LEFT JOIN Youtube.videos v ON
+c.creator_id = v.creator_id
+GROUP BY c.creator_id
+ORDER BY creator_id
 ```
+<img width="1185" height="746" alt="image" src="https://github.com/user-attachments/assets/cd817fac-67b8-4f88-a266-053789c542b7" />
+
 ---
-4. Get total comments for a given video.  
+3. Get total comments for a given video.  
 ```sql
 ```
 ---
-5. List videos published in the last 18 months.  
+4. List videos published in the last 18 months.  
 ```sql
 ```
 ---
-6. Find videos longer than 20 minutes.
+5. Find videos longer than 20 minutes.
 ```sql
 ```
 ---
-7. Show top 10 videos by total views (aggregate daily_views).  
+6. Show top 10 videos by total views (aggregate daily_views).  
 ```sql
 ```
 ---
-8. Show unique categories.  
+7. Show unique categories.  
 ```sql
 ```
 ---
-9. Count creators per country.  
+8. Count creators per country.  
 ```sql
 ```
 ---
-10. Get average views per video per creator.  
+9. Get average views per video per creator.  
 ```sql
 ```
 ---
-11. Find videos with zero comments.  
+10. Find videos with zero comments.  
 ```sql
 ```
 ---
