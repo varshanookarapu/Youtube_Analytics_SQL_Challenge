@@ -1,5 +1,6 @@
 YouTube Analytics Dataset (SQL Server)
 -- Schema and INSERT statements
+-- Make sure to set the Database to PostgreSql in DB FIDDLE
 
 CREATE SCHEMA Youtube;
 
