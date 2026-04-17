@@ -1,10 +1,11 @@
 
-# 50 SQL Questions – YouTube Analytics Project
+# 📊 SQL Practice Questions – Video Analytics Dataset
 
-Practice-focused SQL questions using a single YouTube Analytics dataset. Designed for interviews, real-world data
-analysis, and SQL mastery.
+This repository contains SQL practice questions covering **basic queries, aggregations, joins, window functions, and advanced analytics** using a video analytics dataset.
 
-## Basics (1–10)
+---
+
+## 🟢 Basics (1–10)
 
 1. List all videos and their creator names.  
 2. Count total videos per creator.  
@@ -19,7 +20,7 @@ analysis, and SQL mastery.
 
 ---
 
-## Filters & Aggregates (11–20)
+## 🟡 Filters & Aggregates (11–20)
 
 11. Total impressions and clicks per video.  
 12. Compute CTR = clicks / impressions per day.  
@@ -30,4 +31,60 @@ analysis, and SQL mastery.
 17. Average likes/dislikes per video.  
 18. List videos with more dislikes than likes.  
 19. Videos where avg_view_duration < 20% of duration.  
-20. Videos that gained more than 1k views in a day (spikes).
+20. Videos that gained more than 1k views in a day (spikes).  
+
+---
+
+## 🔵 Joins & Multi-table (21–30)
+
+21. For each creator, total revenue (ad + subscription + other).  
+22. For each video, last 7-day rolling average views.  
+23. Top performing video per creator by revenue.  
+24. Video comment sentiment breakdown (positive / neutral / negative).  
+25. Videos with impressions but 0 clicks (possible data issue).  
+26. List videos and their peak daily views date.  
+27. Show creators who published more than 10 videos.  
+28. Videos with multiple high-spike days.  
+29. Find videos with payments revenue but zero views (data mismatch).  
+30. Creator-wise average CTR.  
+
+---
+
+## 🟣 Window Functions & Ranking (31–39)
+
+31. Rank videos by total views within each category (RANK / DENSE_RANK).  
+32. Running total of views per video (window function).  
+33. Monthly growth rate of views for each video (LAG).  
+34. Top 3 videos per month (partition + ranking).  
+35. Percentile of views for each video (NTILE).  
+36. Lead/Lag to calculate day-over-day % change.  
+37. Cumulative watch time per creator.  
+38. Rank creators by average watch time per video.  
+39. Use ROW_NUMBER to deduplicate and get latest daily stats.  
+
+---
+
+## 🔴 Advanced / Analytics (40–50)
+
+40. Compute engagement score = (likes + comments + clicks) / impressions.  
+41. Detect anomaly days using z-score on daily views.  
+42. Creator retention: % of videos still getting views after 90 days.  
+43. Find videos causing highest drop-off (low avg_view_duration vs duration).  
+44. Creator lifetime value = total revenue / number of videos.  
+45. Segment videos by length and analyze CTR per segment.  
+46. Identify top comment contributors.  
+47. Videos with >20k impressions but no revenue.  
+48. Monthly revenue pivot by category.  
+49. Funnel analysis: impressions → clicks → views → watch_time.  
+50. Detect inconsistent data across daily metrics tables.  
+
+---
+
+## 🚀 Purpose
+
+This dataset is designed to practice:
+- SQL Joins
+- Aggregations
+- Window Functions
+- Real-world analytics scenarios
+- Data quality checks
