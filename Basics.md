@@ -25,7 +25,15 @@ ORDER BY creator_id
 ---
 3. Get total comments for a given video.  
 ```sql
+SELECT v.video_id , COUNT(comment_id) as comments_count FROM Youtube.videos v
+LEFT JOIN Youtube.comments c  ON
+v.video_id = c.video_id
+GROUP BY v.video_id
+ORDER BY v.video_id
+LIMIT 5
 ```
+<img width="946" height="292" alt="image" src="https://github.com/user-attachments/assets/4fdcc2a1-ca0f-466e-9c0f-938b552c4eb8" />
+
 ---
 4. List videos published in the last 18 months.  
 ```sql
@@ -33,7 +41,12 @@ ORDER BY creator_id
 ---
 5. Find videos longer than 20 minutes.
 ```sql
+SELECT video_id , title, (duration_seconds/60) :: NUMERIC as duration_minutes FROM Youtube.videos 
+WHERE duration_seconds > 20*60
+ORDER BY video_id
 ```
+<img width="1320" height="353" alt="image" src="https://github.com/user-attachments/assets/f50ff746-33bc-4ae9-bc21-a2894e212c5e" />
+
 ---
 6. Show top 10 videos by total views (aggregate daily_views).  
 ```sql
