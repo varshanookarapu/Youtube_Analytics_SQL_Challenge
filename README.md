@@ -3,6 +3,7 @@
 
 This repository contains SQL practice questions covering **basic queries, aggregations, joins, window functions, and advanced analytics** using a video analytics dataset.
 
+I put the dataset code in the next file which you can copy paste in DB fiddle (https://www.db-fiddle.com/) and work on these challenges . 
 ---
 
 ## 🟢 Basics (1–10)
