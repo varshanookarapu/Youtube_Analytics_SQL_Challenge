@@ -54,11 +54,20 @@ ORDER BY video_id
 ---
 7. Show unique categories.  
 ```sql
+SELECT DISTINCT category FROM Youtube.videos
+ORDER BY category;
 ```
+<img width="425" height="498" alt="image" src="https://github.com/user-attachments/assets/6dfdd270-b9a1-4cb0-823b-a208cba41aff" />
+
 ---
 8. Count creators per country.  
 ```sql
+SELECT country, COUNT(creator_id) as creators_count FROM Youtube.creators 
+GROUP BY country
+ORDER BY country;
 ```
+<img width="1281" height="562" alt="image" src="https://github.com/user-attachments/assets/2da2cef4-ce7e-4489-8ba7-337037f74f51" />
+
 ---
 9. Get average views per video per creator.  
 ```sql
