@@ -37,7 +37,17 @@ LIMIT 5
 ---
 4. List videos published in the last 18 months.  
 ```sql
+SELECT video_id,title FROM Youtube.videos 
+WHERE 
+publish_date 
+BETWEEN (SELECT (MAX(publish_date) -  INTERVAL '18 months') :: DATE FROM Youtube.videos )
+AND (SELECT MAX(publish_date) FROM Youtube.videos )
+ORDER BY video_id;
+
 ```
+1000 - 1219 videos
+<img width="1334" height="754" alt="image" src="https://github.com/user-attachments/assets/f87479af-eb2c-4dd5-a8d5-b11ed5b4618c" />
+
 ---
 5. Find videos longer than 20 minutes.
 ```sql
