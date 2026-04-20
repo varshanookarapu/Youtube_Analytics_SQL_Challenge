@@ -101,7 +101,23 @@ ORDER BY country;
 ---
 9. Get average views per video per creator.  
 ```sql
+WITH av AS
+(
+SELECT creator_id,v.video_id,views as view_count_per_video_id 
+FROM Youtube.videos v 
+LEFT JOIN Youtube.daily_views dv
+ON v.video_id = dv.video_id 
+ORDER BY creator_id,v.video_id
+)
+
+SELECT creator_id, video_id,  SUM(view_count_per_video_id ) total_views_per_video_id ,
+ROUND((SUM(view_count_per_video_id ) / COUNT(*) ) ::NUMERIC) as average_views_per_creator_per_video
+FROM av
+WHERE creator_id = 1 
+GROUP BY creator_id,video_id
 ```
+<img width="1396" height="288" alt="image" src="https://github.com/user-attachments/assets/35e85f37-bf3d-4dc9-aa99-a3bcb5996a84" />
+
 ---
 10. Find videos with zero comments.  
 ```sql
