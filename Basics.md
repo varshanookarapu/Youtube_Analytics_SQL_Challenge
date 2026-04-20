@@ -105,5 +105,21 @@ ORDER BY country;
 ---
 10. Find videos with zero comments.  
 ```sql
+WITH zero_video_comments AS
+(
+SELECT v.video_id, COUNT(comment_id) as total_comments 
+FROM Youtube.videos v 
+LEFT JOIN Youtube.comments c 
+ON v.video_id = c.video_id 
+GROUP BY v.video_id
+)
+-- This question was a bit ambigious so i listed all the video ids as well as total videos with zero comments 
+-- SELECt video_id FROM zero_video_comments WHERE total_comments =0 
+-- ORDER BY video_id ;
+
+SELECT COUNT(video_id) as videos_with_zero_comments FROM zero_video_comments WHERE total_comments =0 
 ```
+<img width="309" height="91" alt="image" src="https://github.com/user-attachments/assets/bf26e053-62ab-4cf0-8229-85bd09afc1f3" />
+<img width="182" height="747" alt="image" src="https://github.com/user-attachments/assets/075accca-7b6a-4cf8-803b-1bdbec9e6f96" />
+
 ---
