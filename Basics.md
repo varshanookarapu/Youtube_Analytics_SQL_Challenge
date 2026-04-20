@@ -133,7 +133,16 @@ GROUP BY v.video_id
 -- SELECt video_id FROM zero_video_comments WHERE total_comments =0 
 -- ORDER BY video_id ;
 
-SELECT COUNT(video_id) as videos_with_zero_comments FROM zero_video_comments WHERE total_comments =0 
+SELECT COUNT(video_id) as videos_with_zero_comments FROM zero_video_comments WHERE total_comments =0
+
+
+-- Alternate -- to learn EXCEPT clause
+SELECT video_id FROM videos
+EXCEPT
+SELECt video_id FROM comments
+ORDER BY video_id
+
+-- will find the ids which are in videos table but not in comments table
 ```
 <img width="309" height="91" alt="image" src="https://github.com/user-attachments/assets/bf26e053-62ab-4cf0-8229-85bd09afc1f3" />
 <img width="182" height="747" alt="image" src="https://github.com/user-attachments/assets/075accca-7b6a-4cf8-803b-1bdbec9e6f96" />
