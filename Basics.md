@@ -2,13 +2,13 @@
 
 1. List all videos and their creator names.
 ```sql
-SELECT  DISTINCT video_id,title,creator_name FROM Youtube.creators c
+SELECT  c.creator_id, creator_name,video_id,title FROM Youtube.creators c
 LEFT JOIN Youtube.videos v ON
 c.creator_id = v.creator_id
-ORDER BY video_id
+ORDER BY c.creator_id, video_id
 
 ```
-<img width="1633" height="744" alt="image" src="https://github.com/user-attachments/assets/a13cd7c5-5077-4ea7-8ab0-f44c2980f4ed" />
+<img width="1383" height="349" alt="image" src="https://github.com/user-attachments/assets/ac001fa8-bd2d-43fe-847e-d826f4996a2a" />
 
 ---
    
