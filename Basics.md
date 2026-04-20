@@ -60,7 +60,27 @@ ORDER BY video_id
 ---
 6. Show top 10 videos by total views (aggregate daily_views).  
 ```sql
+WITH tvc AS
+(
+SELECT video_id , SUM(CASE WHEN views IS NOT NULL THEN views ELSE 0 END ) as total_views 
+FROM 
+Youtube.daily_views 
+GROUP BY video_id 
+
+
+)
+
+SELECT video_id, total_views,RANK() OVER(ORDER BY total_views DESC) as rank
+FROM tvc
+LIMIT 10
+
+-- NOTE : I used partition by video_id in the window function 
+-- Then i got all ones in the rank column, the reason is that in our CTE we already partitioned ( grouped by ) by video id , so  there is exactly one row for each video id , hence when a partition has one row , its rank is always one that is the reason why i was seeing all ones before.
+--RANK() OVER(PARTITION BY video_id ORDER BY total_views ) as rank
+
 ```
+<img width="1770" height="533" alt="image" src="https://github.com/user-attachments/assets/5b63c1fd-65d2-424a-99b8-1f2085032282" />
+
 ---
 7. Show unique categories.  
 ```sql
