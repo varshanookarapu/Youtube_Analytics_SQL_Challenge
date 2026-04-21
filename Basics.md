@@ -23,7 +23,7 @@ ORDER BY creator_id
 <img width="1185" height="746" alt="image" src="https://github.com/user-attachments/assets/cd817fac-67b8-4f88-a266-053789c542b7" />
 
 ---
-3. Get total comments for a given video.   -** WIP**
+3. Get total comments for a given video.  
 ```sql
 SELECT v.video_id , COUNT(comment_id) as comments_count FROM Youtube.videos v
 LEFT JOIN Youtube.comments c  ON
