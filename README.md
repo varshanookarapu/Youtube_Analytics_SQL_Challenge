@@ -30,7 +30,7 @@ SELECT * FROM Youtube.revenue LIMIT 2
 
 ---
 
-## 🟡 Filters & Aggregates (11–20)
+## 🟡 [Filters & Aggregates (11–20)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Filters%20%26%20Aggregates.md)
 
 11. Total impressions and clicks per video.  
 12. Compute CTR = clicks / impressions per day.  
