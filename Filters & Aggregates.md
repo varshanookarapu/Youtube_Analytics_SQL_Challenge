@@ -2,7 +2,14 @@
 ---
 11. Total impressions and clicks per video.
  ```sql
+ SELECT v.video_id, SUM(impressions) as total_impressions , SUM(clicks) as total_clicks  FROM videos v 
+LEFT JOIN daily_views dv 
+ON v.video_id = dv.video_id
+GROUP BY v.video_id
+ORDER BY v.video_id
  ```
+<img width="1578" height="775" alt="image" src="https://github.com/user-attachments/assets/312ee835-bbaf-47a5-970e-4ded1a4aef32" />
+
 ---
 12. Compute CTR = clicks / impressions per day.
  ```sql
