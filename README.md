@@ -15,7 +15,7 @@ SELECT * FROM Youtube.revenue LIMIT 2
 ```
 ---
 
-## 🟢 Basics (1–10) [Link](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Basics.md)
+## 🟢 [Basics (1–10)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Basics.md)
 
 1. List all videos and their creator names.  
 2. Count total videos per creator.  
