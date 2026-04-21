@@ -13,7 +13,18 @@ ORDER BY v.video_id
 ---
 12. Compute CTR = clicks / impressions per day.
  ```sql
+ SELECT view_date,SUM(clicks) as total_clicks_per_day ,SUM(impressions) as total_impressions_per_day ,
+(CASE WHEN SUM(impressions)=0 THEN 0 ELSE (SUM(clicks)*100/SUM(impressions)) ::NUMERIC  END ) AS CTR_click_through_rate  
+FROM videos v 
+LEFT JOIN daily_views dv 
+ON v.video_id = dv.video_id
+WHERE view_date IS NOT NULL
+GROUP BY view_date
+ORDER BY view_date
+
  ```
+ <img width="1770" height="745" alt="image" src="https://github.com/user-attachments/assets/928c32b4-ef97-489a-a084-5e8de60be327" />
+
 ---
 13. Average watch time per view (watch_time_seconds / views).
 ```sql
