@@ -15,7 +15,7 @@ SELECT * FROM Youtube.revenue LIMIT 2
 ```
 ---
 
-## 🟢 Basics (1–10)
+## 🟢 Basics (1–10) [Link]
 
 1. List all videos and their creator names.  
 2. Count total videos per creator.  
