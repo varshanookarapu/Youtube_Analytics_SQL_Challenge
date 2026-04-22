@@ -39,7 +39,14 @@ ORDER BY v.video_id
 14. Daily views trend for a single video.
 
 ```sql
+SELECT  v.video_id , view_date,views , RANK() OVER(PARTITION BY v.video_id ORDER BY views DESC) as rank
+
+FROM  videos v LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+ORDER BY v.video_id ,view_date
  ```
+ <img width="1780" height="808" alt="image" src="https://github.com/user-attachments/assets/9768d0a0-e194-4bf4-8047-6f60ba21ff7a" />
+
 ---
 15. Views per category.  
 ```sql
