@@ -28,7 +28,13 @@ ORDER BY view_date
 ---
 13. Average watch time per view (watch_time_seconds / views).
 ```sql
+SELECT  v.video_id , ROUND(SUM(watch_time_seconds)/SUM(views)) :: NUMERIC as watch_time_per_view FROM  videos v LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+GROUP BY v.video_id
+ORDER BY v.video_id
  ```
+ <img width="1002" height="882" alt="image" src="https://github.com/user-attachments/assets/8577d9bc-58bf-435e-92e6-1132107791a6" />
+
 ---
 14. Daily views trend for a single video.
 
