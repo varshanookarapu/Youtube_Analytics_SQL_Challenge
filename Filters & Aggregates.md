@@ -88,7 +88,14 @@ LIMIT 5
 
 18. List videos with more dislikes than likes.  
 ```sql
+   SELECT  v.video_id ,likes,dislikes 
+      FROM  videos v LEFT JOIN likes_dislikes ld ON
+      v.video_id = ld.video_id 
+      WHERE dislikes>likes
+      ORDER BY v.video_id
  ```
+ <img width="1618" height="160" alt="image" src="https://github.com/user-attachments/assets/870a5105-49a8-4e38-8ffb-6c4519771e3a" />
+
 ---
 
 19. Videos where avg_view_duration < 20% of duration.
@@ -99,5 +106,13 @@ LIMIT 5
 20. Videos that gained more than 1k views in a day (spikes).
 
 ```sql
+ SELECT  v.video_id ,view_date, SUM(views) as total_views_per_day
+      FROM  videos v LEFT JOIN daily_views dv ON
+      v.video_id = dv.video_id 
+      GROUP BY v.video_id,view_date
+      HAVING SUM(views) > 1000
+      ORDER BY v.video_id
  ```
+ <img width="1420" height="830" alt="image" src="https://github.com/user-attachments/assets/c86e1c0c-09db-410e-ade0-75f6e5993745" />
+
 ---
