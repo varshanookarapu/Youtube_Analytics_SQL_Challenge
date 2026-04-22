@@ -50,12 +50,27 @@ ORDER BY v.video_id ,view_date
 ---
 15. Views per category.  
 ```sql
+SELECT  v.video_id , category,SUM(views) as total_views_per_category
+FROM  videos v LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+GROUP BY v.video_id
+ORDER BY v.video_id 
  ```
+ <img width="1563" height="830" alt="image" src="https://github.com/user-attachments/assets/9733ec33-4694-439a-8216-ed63f858826d" />
+
 ---
 
 16. Top 5 videos by watch_time_seconds.  
 ```sql
+SELECT  v.video_id , title, SUM(CASE WHEN  watch_time_seconds IS NULL THEN 0 ELSE watch_time_seconds END) as total_watch_time_seconds
+FROM  videos v LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+GROUP BY v.video_id ,title 
+ORDER BY total_watch_time_seconds DESC
+LIMIT 5
  ```
+ <img width="1306" height="376" alt="image" src="https://github.com/user-attachments/assets/baf45c0c-f381-4589-bf67-e8378b096169" />
+
 ---
 
 17. Average likes/dislikes per video.  
