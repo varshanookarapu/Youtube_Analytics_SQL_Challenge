@@ -75,7 +75,15 @@ LIMIT 5
 
 17. Average likes/dislikes per video.  
 ```sql
+ SELECT  v.video_id , SUM(CASE WHEN likes IS NULL THEN 0 ELSE likes END)/COUNT(*)  as average_likes,SUM(CASE WHEN dislikes IS NULL THEN 0 ELSE dislikes END )/COUNT(*) as average_dislikes
+      FROM  videos v LEFT JOIN likes_dislikes ld ON
+      v.video_id = ld.video_id 
+      GROUP BY v.video_id
+      ORDER BY v.video_id
+      
  ```
+ <img width="1756" height="722" alt="image" src="https://github.com/user-attachments/assets/9416b677-ceb3-4694-a46f-5b8c7786d314" />
+
 ---
 
 18. List videos with more dislikes than likes.  
