@@ -101,7 +101,15 @@ LIMIT 5
 19. Videos where avg_view_duration < 20% of duration.
 
 ```sql
+
+
+SELECT video_id, SUM(avg_view_duration_seconds) avg_view_duration_seconds FROM daily_views
+GROUP BY video_id
+HAVING SUM(avg_view_duration_seconds) < 0.20*SUM(watch_time_seconds)
+ORDER BY video_id
  ```
+ <img width="826" height="378" alt="image" src="https://github.com/user-attachments/assets/5816ae42-b9c5-4204-b11d-2451797974d1" />
+
 ---
 20. Videos that gained more than 1k views in a day (spikes).
 
