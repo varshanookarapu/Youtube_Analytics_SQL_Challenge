@@ -50,13 +50,22 @@ ORDER BY v.video_id ,view_date
 ---
 15. Views per category.  
 ```sql
+-- per video
 SELECT  v.video_id , category,SUM(views) as total_views_per_category
 FROM  videos v LEFT JOIN daily_views dv ON
 v.video_id = dv.video_id
 GROUP BY v.video_id
-ORDER BY v.video_id 
+ORDER BY v.video_id
+
+-- per category
+SELECT   category,SUM(views) as total_views_per_category
+FROM  videos v LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+GROUP BY category
+ORDER BY category 
  ```
  <img width="1563" height="830" alt="image" src="https://github.com/user-attachments/assets/9733ec33-4694-439a-8216-ed63f858826d" />
+<img width="1119" height="428" alt="image" src="https://github.com/user-attachments/assets/90ef6a1a-7766-4474-b0eb-b5233a6618e9" />
 
 ---
 
