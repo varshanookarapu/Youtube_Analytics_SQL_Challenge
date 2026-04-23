@@ -14,6 +14,16 @@ SELECT * FROM Youtube.likes_dislikes LIMIT 2;
 SELECT * FROM Youtube.revenue LIMIT 2
 ```
 ---
+## 🚀 Purpose
+
+This dataset is designed to practice:
+- SQL Joins
+- Aggregations
+- Window Functions
+- Real-world analytics scenarios
+- Data quality checks
+
+---
 
 ## 🟢 [Basics (1–10)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Basics.md)
 
@@ -90,11 +100,3 @@ SELECT * FROM Youtube.revenue LIMIT 2
 
 ---
 
-## 🚀 Purpose
-
-This dataset is designed to practice:
-- SQL Joins
-- Aggregations
-- Window Functions
-- Real-world analytics scenarios
-- Data quality checks
