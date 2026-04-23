@@ -67,7 +67,30 @@ ORDER BY v.video_id
 ---
 **Question 25:** Videos with impressions but 0 clicks (possible data issue).
 ```sql
+SELECT v.video_id, impressions, clicks 
+FROM videos v
+INNER JOIN daily_views dv ON
+v.video_id = dv.video_id
+WHERE impressions >0 AND clicks = 0
+ORDER BY v.video_id
+-- Total video count
+WITH CTE AS(
+  
+SELECT v.video_id, impressions, clicks 
+FROM videos v
+INNER JOIN daily_views dv ON
+v.video_id = dv.video_id
+WHERE impressions >0 AND clicks = 0
+ORDER BY v.video_id
+)
+
+SELECT COUNT(*)  as videos_with_impressions_no_clicks FROM CTE
+
 ```
+<img width="492" height="169" alt="image" src="https://github.com/user-attachments/assets/cab07fd5-8d3b-48de-b1af-cdefa75faaef" />
+
+<img width="1728" height="901" alt="image" src="https://github.com/user-attachments/assets/4878d2a9-8ca0-4146-b9de-649cee64fe6d" />
+
 ---
 **Question 26:** List videos and their peak daily views date.
 ```sql
