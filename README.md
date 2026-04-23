@@ -45,7 +45,7 @@ SELECT * FROM Youtube.revenue LIMIT 2
 
 ---
 
-## 🔵 Joins & Multi-table (21–30)
+## 🔵 [Joins & Multi-table (21–30)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Joins%20&%20Multi-tables.md)
 
 21. For each creator, total revenue (ad + subscription + other).  
 22. For each video, last 7-day rolling average views.  
