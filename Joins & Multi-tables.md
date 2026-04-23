@@ -94,7 +94,19 @@ SELECT COUNT(*)  as videos_with_impressions_no_clicks FROM CTE
 ---
 **Question 26:** List videos and their peak daily views date.
 ```sql
+WITH views AS
+(
+SELECT v.video_id, view_date,views , ROW_NUMBER() OVER(PARTITION BY v.video_id ORDER BY views DESC) as rank
+FROM videos v 
+LEFT JOIN daily_views dv
+ON v.video_id = dv.video_id
+ORDER BY v.video_id,view_date
+)
+
+SELECT video_id, view_date,views FROM views WHERE rank  =1 
 ```
+<img width="1592" height="746" alt="image" src="https://github.com/user-attachments/assets/6a7c6855-86af-44ca-a72d-c3f7e047b300" />
+
 ---
 **Question 27:** Show creators who published more than 10 videos.
 ```sql
