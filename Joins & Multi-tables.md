@@ -22,7 +22,33 @@ ORDER BY v.creator_id
 ---
 **Question 23:** Top performing video per creator by revenue.
 ```sql
+WITH top_revenue AS
+(
+
+SELECT v.creator_id, creator_name,v.video_id, SUM( CASE WHEN ad_revenue + subscription_revenue + other_revenue IS NULL THEN 0 ELSE (ad_revenue + subscription_revenue + other_revenue) END ) AS total_revenue 
+FROM videos v LEFT JOIN
+revenue r ON
+v.video_id = r.video_id
+LEFT JOIN creators c ON
+v.creator_id = c.creator_id
+GROUP BY creator_name,v.creator_id,v.video_id
+ORDER BY v.creator_id,video_id
+
+),
+
+top_performers AS
+(
+
+SELECT * ,RANK() OVER(PARTITION BY creator_id ORDER BY total_revenue DESC) as rank 
+FROM top_revenue
+WHERE total_revenue !=0 
+)
+
+SELECT * FROM top_performers WHERE rank =1
+
 ```
+<img width="1737" height="744" alt="image" src="https://github.com/user-attachments/assets/5709203a-5b3f-4cca-9107-c61584de59d2" />
+
 ---
 **Question 24:** Video comment sentiment breakdown (positive / neutral / negative).
 ```sql
