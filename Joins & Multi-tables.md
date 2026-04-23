@@ -52,7 +52,18 @@ SELECT * FROM top_performers WHERE rank =1
 ---
 **Question 24:** Video comment sentiment breakdown (positive / neutral / negative).
 ```sql
+SELECT v.video_id, COUNT(CASE WHEN sentiment ='positive' THEN v.video_id END ) As sentiment_postivie,
+COUNT(CASE WHEN sentiment ='negative' THEN v.video_id END ) As sentiment_negative,
+COUNT(CASE WHEN sentiment ='neutral' THEN v.video_id END ) As sentiment_neutral
+FROM videos v
+INNER JOIN comments c ON
+v.video_id = c.video_id
+GROUP BY v.video_id
+ORDER BY v.video_id
+
 ```
+<img width="1575" height="326" alt="image" src="https://github.com/user-attachments/assets/6af7b759-ad14-4420-aa4d-dbfad074cce3" />
+
 ---
 **Question 25:** Videos with impressions but 0 clicks (possible data issue).
 ```sql
