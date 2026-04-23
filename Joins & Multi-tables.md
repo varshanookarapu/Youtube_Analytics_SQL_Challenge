@@ -110,7 +110,17 @@ SELECT video_id, view_date,views FROM views WHERE rank  =1
 ---
 **Question 27:** Show creators who published more than 10 videos.
 ```sql
+SELECT v.creator_id,creator_name, COUNT(video_id) as videos_published
+FROM videos v 
+LEFT JOIN creators c 
+ON v.creator_id = c.creator_id
+GROUP BY v.creator_id,creator_name
+HAVING COUNT(video_id) > 10 
+ORDER BY v.creator_id
+
 ```
+<img width="1526" height="435" alt="image" src="https://github.com/user-attachments/assets/d983c3fe-8691-49d6-9921-72be9eefafd4" />
+
 ---
 **Question 28:** Videos with multiple high-spike days.
 ```sql
