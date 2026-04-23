@@ -128,7 +128,15 @@ ORDER BY v.creator_id
 ---
 **Question 29:** Find videos with payments revenue but zero views (data mismatch).
 ```sql
+
+SELECT DISTINCT video_id FROM revenue WHERE video_id NOT IN ( SELECT DISTINCT video_id FROM daily_views)
+
+-- cross validation using daily views 
+SELECT DISTINCT video_id FROM daily_views WHERE video_id IN( 1208,1083)
 ```
+<img width="328" height="173" alt="image" src="https://github.com/user-attachments/assets/89b61a1d-3fdd-4e25-8e05-acdf6da14401" />
+<img width="512" height="181" alt="image" src="https://github.com/user-attachments/assets/78b7f64e-5fb8-4cb0-b345-87487bff2353" />
+
 ---
 **Question 30:** Creator-wise average CTR.
 ```sql
