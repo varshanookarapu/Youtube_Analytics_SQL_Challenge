@@ -70,7 +70,7 @@ This dataset is designed to practice:
 
 ---
 
-## 🟣 Window Functions & Ranking (31–39)
+## 🟣 [Window Functions & Ranking (31–39)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Window%20Functions%20%26%20Ranking%20.md)
 
 31. Rank videos by total views within each category (RANK / DENSE_RANK).  
 32. Running total of views per video (window function).  
