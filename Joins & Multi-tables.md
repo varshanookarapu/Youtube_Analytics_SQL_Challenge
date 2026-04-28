@@ -18,6 +18,12 @@ ORDER BY v.creator_id
 
 **Question 22:** For each video, last 7-day rolling average views.
 ```sql
+SELECT  v.video_id, view_date,views , FLOOR( AVG(views) OVER(PARTITION BY v.video_id ORDER BY view_date)) as rolling_sum
+
+FROM videos v 
+LEFT JOIN daily_views dv ON
+v.video_id = dv.video_id
+ORDER BY v.video_id ,view_date
 ```
 ---
 **Question 23:** Top performing video per creator by revenue.
