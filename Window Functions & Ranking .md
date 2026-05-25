@@ -32,7 +32,21 @@ ORDER BY video_id,view_date
 ---
 **Question 33:** Monthly growth rate of views for each video (LAG).
 ```sql
+
+WITH daily_views_cte AS
+(
+SELECT video_id,EXTRACT(MONTH FROM view_date) as month ,views, LAG(views) OVER(PARTITION BY video_id ORDER BY EXTRACT(MONTH FROM view_date)) as previous_month_views
+FROM Youtube.daily_views 
+ORDER BY video_id
+) 
+
+SELECT * ,
+ 100*(views-previous_month_views)/previous_month_views as growth_rate_of_views
+FROM daily_views_cte
+
 ```
+<img width="1324" height="350" alt="image" src="https://github.com/user-attachments/assets/374e7e3c-c25f-4c5b-8b92-11763f477a43" />
+
 ---
 **Question 34:** Top 3 videos per month (partition + ranking).
 ```sql
