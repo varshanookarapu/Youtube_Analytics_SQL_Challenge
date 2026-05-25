@@ -23,7 +23,12 @@ WHERE total_views IS NOT NULL
 ---
 **Question 32:** Running total of views per video (window function).
 ```sql
+SELECT video_id,views, SUM(views) OVER(PARTITION BY video_id ORDER BY view_date) as running_total_of_views ,view_date
+FROM Youtube.daily_views 
+ORDER BY video_id,view_date
 ```
+<img width="1890" height="657" alt="image" src="https://github.com/user-attachments/assets/3c4c8ffd-6cd6-472b-bf60-80c86b343ec2" />
+
 ---
 **Question 33:** Monthly growth rate of views for each video (LAG).
 ```sql
