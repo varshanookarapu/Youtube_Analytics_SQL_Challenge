@@ -73,7 +73,31 @@ SELECT * FROM ranked_videos WHERE rank <=3
 ---
 **Question 35:** Percentile of views for each video (NTILE).
 ```sql
+--NTILE(n) splits ordered rows into n buckets (groups) as evenly as possible.
+--NTILE(10) OVER(PARTITION BY video_id ORDER BY views)
+
+--means:
+
+--For each video_id
+--Sort rows by views
+--Divide the rows into 10 groups
+--Assign bucket numbers: 1 → 10
+--Mathematically, it behaves approximately like:
+--bucket=⌈row number×n/total rows⌉
+--Where:
+--n = number of buckets
+--row number = position after sorting
+--total rows = rows in the partition
+
+SELECT video_id, views,
+ntile(10) OVER(PARTITION BY video_id ORDER BY views) as percentile
+FROM daily_views 
+ORDER BY video_id
+
+
 ```
+<img width="1539" height="356" alt="image" src="https://github.com/user-attachments/assets/a4118076-de8d-4f93-9734-9a23338fe3d6" />
+
 ---
 **Question 36:** Lead/Lag to calculate day-over-day % change.
 ```sql
