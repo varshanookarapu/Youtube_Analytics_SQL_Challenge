@@ -123,7 +123,17 @@ FROM views
 ---
 **Question 37:** Cumulative watch time per creator.
 ```sql
+--Add current watch time to all previous watch times.
+
+SELECT  creator_id,v.video_id,view_date,watch_time_seconds , SUM(watch_time_seconds) OVER(PARTITION BY creator_id ORDER BY view_date) as cumulative_watch_time
+FROM
+Youtube.videos v 
+LEFT JOIN  Youtube.daily_views dv ON v.video_id = dv.video_id
+ORDER BY creator_id,v.video_id,view_date 
+
 ```
+<img width="1574" height="366" alt="image" src="https://github.com/user-attachments/assets/d89b39d9-486d-467c-a47c-0079351b1982" />
+
 ---
 **Question 38:** Rank creators by average watch time per video.
 ```sql
