@@ -84,7 +84,7 @@ This dataset is designed to practice:
 
 ---
 
-## 🔴 Advanced / Analytics (40–50)
+## 🔴 [Advanced / Analytics (40–50)](https://github.com/varshanookarapu/Youtube_Analytics_SQL_Challenge/blob/main/Advanced%20Analytics%20.md)
 
 40. Compute engagement score = (likes + comments + clicks) / impressions.  
 41. Detect anomaly days using z-score on daily views.  
