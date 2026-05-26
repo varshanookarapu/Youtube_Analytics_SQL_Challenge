@@ -1,3 +1,4 @@
+## 🟢 Advanced Analytics (40–50)
 
 **Question 40:** Compute engagement score = (likes + comments + clicks) / impressions.
 
