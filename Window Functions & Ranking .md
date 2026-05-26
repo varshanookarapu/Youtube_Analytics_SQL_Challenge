@@ -153,7 +153,4 @@ FROM watchtime
 <img width="1887" height="740" alt="image" src="https://github.com/user-attachments/assets/f41d08bf-1514-4b3e-a3d8-2734cf2487b0" />
 
 ---
-**Question 39:** Use ROW_NUMBER to deduplicate and get latest daily stats.
-```sql
-```
----
+**Question 39:** Use ROW_NUMBER to deduplicate and get latest daily stats. -- Question not correct 
