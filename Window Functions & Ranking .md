@@ -101,7 +101,25 @@ ORDER BY video_id
 ---
 **Question 36:** Lead/Lag to calculate day-over-day % change.
 ```sql
+
+--day-over-day-percentage-growth = [ current_views - pervious_day_views / previous_day_views ] * 100
+
+with views AS
+(
+SELECT video_id, view_date,views,
+LAG(views) OVER(PARTITION BY video_id ORDER BY view_date) as previous_day_views,
+LEAD(views) OVER(PARTITION BY video_id ORDER BY view_date) as next_day_views
+FROM daily_views
+ORDER BY video_id,view_date
+)
+
+
+SELECT * , 100*(views-previous_day_views)/previous_day_views as day_over_day_percentage_change
+FROM views
+
 ```
+<img width="1891" height="784" alt="image" src="https://github.com/user-attachments/assets/81a7126e-e264-4a70-886a-cd4d76f182c1" />
+
 ---
 **Question 37:** Cumulative watch time per creator.
 ```sql
