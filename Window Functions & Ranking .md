@@ -127,7 +127,21 @@ FROM views
 ---
 **Question 38:** Rank creators by average watch time per video.
 ```sql
+WITH watchtime AS
+(
+SELECT  creator_id,v.video_id, SUM(avg_view_duration_seconds) as total_avg_view_duration_seconds
+FROM
+Youtube.videos v 
+LEFT JOIN  Youtube.daily_views dv ON v.video_id = dv.video_id
+GROUP BY creator_id,v.video_id
+ORDER BY creator_id,v.video_id
+)
+
+SELECT *, RANK() OVER(PARTITION BY creator_id ORDER BY total_avg_view_duration_seconds DESC) as rank 
+FROM watchtime
 ```
+<img width="1887" height="740" alt="image" src="https://github.com/user-attachments/assets/f41d08bf-1514-4b3e-a3d8-2734cf2487b0" />
+
 ---
 **Question 39:** Use ROW_NUMBER to deduplicate and get latest daily stats.
 ```sql
