@@ -50,7 +50,26 @@ FROM daily_views_cte
 ---
 **Question 34:** Top 3 videos per month (partition + ranking).
 ```sql
+WITH cte AS 
+(
+SELECT  EXTRACT(MONTH FROM view_date) as month , v.video_id, views 
+FROM Youtube.videos v
+INNER JOIN  Youtube.daily_views dv ON
+v.video_id = dv.video_id
+ORDER BY month, video_id
+),
+
+ranked_videos AS
+(
+  
+SELECT  * , RANK() OVER(PARTITION BY month ORDER BY views DESC) as rank
+FROM cte
+)
+
+SELECT * FROM ranked_videos WHERE rank <=3
 ```
+<img width="1895" height="658" alt="image" src="https://github.com/user-attachments/assets/b3df5875-3a2d-419b-b05a-30b3541eea57" />
+
 ---
 **Question 35:** Percentile of views for each video (NTILE).
 ```sql
