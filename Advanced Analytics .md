@@ -56,7 +56,19 @@ ORDER BY video_id,view_date
 ---
 **Question 44:** Creator lifetime value = total revenue / number of videos.
 ```sql
+WITH creator_stats AS
+(
+SELECT creator_id,COUNT(DISTINCT v.video_id) as number_of_videos,SUM(ad_revenue + subscription_revenue + other_revenue) as total_revenue  FROM Youtube.videos v 
+LEFT JOIN revenue r ON
+v.video_id =r.video_id
+GROUP BY creator_id
+ORDER BY creator_id
+)
+
+SELECT creator_id ,number_of_videos,total_revenue, ROUND(total_revenue/number_of_videos,2) as revenue_per_video FROM creator_stats
 ```
+<img width="1875" height="524" alt="image" src="https://github.com/user-attachments/assets/ee91d633-8b9e-4b04-9516-5abf2e30c0c1" />
+
 ---
 **Question 45:** Segment videos by length and analyze CTR per segment.
 ```sql
