@@ -26,7 +26,25 @@ SELECT * , ROUND((likes+comments+clicks)::NUMERIC/impressions,2) AS engagement_s
 
 **Question 41:** Detect anomaly days using z-score on daily views.
 ```sql
+--A z-score tells you how far away something is from the average, measured in standard deviations
+WITH views_stats AS
+(
+SELECT video_id, AVG(views) as average_views, STDDEV(views) as standard_deviation_views
+FROM daily_views
+GROUP BY video_id
+ORDER BY video_id
+)
+
+
+SELECT dv.video_id,view_date,views , CASE WHEN standard_deviation_views  IS NULL THEN 0 ELSE 
+ROUND((views - average_views)/standard_deviation_views,2) END as z_score
+
+FROM daily_views dv JOIN views_stats vs ON
+dv.video_id = vs.video_id
+ORDER BY video_id,view_date
 ```
+<img width="1891" height="617" alt="image" src="https://github.com/user-attachments/assets/f63dc19a-b70a-4ef3-9975-bdce8f2f5db0" />
+
 ---
 **Question 42:** Creator retention: % of videos still getting views after 90 days.
 ```sql
