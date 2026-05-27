@@ -3,7 +3,25 @@
 **Question 40:** Compute engagement score = (likes + comments + clicks) / impressions.
 
 ```sql
+--engagement score = likes + comments + clicks / impressions
+
+WITH video_engagement AS
+(
+SELECT dv.video_id ,  
+SUM(CASE WHEN likes IS NULL THEN 0 ELSE likes END) as likes,
+SUM(clicks) as clicks  , SUM(impressions) as impressions,COUNT(comment_id) as comments  
+FROM Youtube.daily_views dv 
+LEFT JOIN Youtube.comments c ON dv.video_id = c.video_id
+LEFT JOIN  Youtube.likes_dislikes  ld ON dv.video_id = ld.video_id
+GROUP BY dv.video_id 
+ORDER BY dv.video_id
+)
+
+
+SELECT * , ROUND((likes+comments+clicks)::NUMERIC/impressions,2) AS engagement_score FROM video_engagement
 ```
+<img width="1654" height="577" alt="image" src="https://github.com/user-attachments/assets/552de32d-7f5b-4966-bb17-8274edf30363" />
+
 ---
 
 **Question 41:** Detect anomaly days using z-score on daily views.
