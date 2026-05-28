@@ -88,7 +88,15 @@ ORDER BY total_videos_commented DESC
 ---
 **Question 47:** Videos with >20k impressions but no revenue.
 ```sql
+SELECT dv.video_id, SUM(impressions) as total_impressions ,  SUM( ad_revenue + subscription_revenue+other_revenue) as total_revenue  FROM Youtube.daily_views dv 
+LEFT JOIN revenue r ON dv.video_id = r.video_id 
+GROUP BY dv.video_id 
+HAVING SUM(impressions) > 20000 AND SUM( ad_revenue + subscription_revenue+other_revenue) IS NULL 
+ORDER BY dv.video_id
+
 ```
+<img width="1899" height="746" alt="image" src="https://github.com/user-attachments/assets/d29eccb4-1754-4ad2-971b-66890dad4a31" />
+
 ---
 **Question 48:** Monthly revenue pivot by category.
 ```sql
