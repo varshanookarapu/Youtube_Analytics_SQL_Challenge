@@ -86,7 +86,36 @@ SELECT creator_id ,number_of_videos,total_revenue, ROUND(total_revenue/number_of
 ---
 **Question 45:** Segment videos by length and analyze CTR per segment.
 ```sql
+-- we calcualted avg ctr for every segment 
+WITH duration_bins  AS 
+(
+
+  SELECT video_id, 
+  CASE WHEN duration_seconds < 300 THEN  'Short_video_<5min'
+  WHEN duration_seconds < 1200 THEN 'Medium_video_5_to_20_min'
+  WHEN duration_seconds > 1200 THEN 'Long_video'
+  END as video_duration_bin
+  FROM videos
+),
+
+ctr AS (
+SELECT dv.video_id, SUM(impressions) as total_impressions ,SUM(clicks) as total_clicks
+FROM daily_views dv 
+GROUP BY dv.video_id 
+ORDER BY dv.video_id  
+)  
+
+
+
+SELECT video_duration_bin, 
+AVG(CASE WHEN total_impressions=0 THEN 0 ELSE total_clicks/total_impressions :: NUMERIC  END ) AS Avg_click_through_rate  
+FROM duration_bins db
+LEFT JOIN ctr ON db.video_id = ctr.video_id
+GROUP BY video_duration_bin
+ORDER BY Avg_click_through_rate DESC
 ```
+<img width="1195" height="235" alt="image" src="https://github.com/user-attachments/assets/39b07dd8-2cd8-49f9-9dd3-d49ea0f0ad44" />
+
 ---
 **Question 46:** Identify top comment contributors.
 ```sql
