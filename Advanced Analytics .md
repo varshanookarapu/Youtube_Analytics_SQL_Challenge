@@ -114,7 +114,38 @@ ORDER BY dv.video_id
 ---
 **Question 48:** Monthly revenue pivot by category.
 ```sql
+SELECT 
+category ,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =1 ) as Jan_Revenue,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =2 ) as Feb_Revenue,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =3 ) as Mar_Revenue,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =4 ) as Apr_Revenue,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =5 ) as May_Revenue,
+
+SUM( ad_revenue+subscription_revenue+other_revenue) 
+FILTER (WHERE EXTRACT( MONTH FROM revenue_date) =6 ) as Jun_Revenue
+
+
+FROM videos v 
+LEFT JOIN revenue r 
+ON v.video_id = r.video_id
+WHERE revenue_date IS NOT NULL
+GROUP BY category  
+ORDER BY category
+ 
 ```
+<img width="1857" height="420" alt="image" src="https://github.com/user-attachments/assets/ef5552f6-12c2-4bc8-ad39-5b5073c9c265" />
+
 ---
 **Question 49:** Funnel analysis: impressions → clicks → views → watch_time.
 ```sql
