@@ -52,7 +52,21 @@ ORDER BY video_id,view_date
 ---
 **Question 43:** Find videos causing highest drop-off (low avg_view_duration vs duration).
 ```sql
+WITH video_duration AS
+(
+SELECT dv.video_id, title,duration_seconds, AVG(avg_view_duration_seconds) as avg_watch_time
+FROM daily_views dv LEFT JOIN videos v ON
+dv.video_id = v.video_id
+GROUP BY dv.video_id ,title ,duration_seconds
+ORDER BY dv.video_id
+) 
+
+SELECT *, (avg_watch_time / duration_seconds)*100 as drop_off_ratio 
+ FROM video_duration
 ```
+
+<img width="1786" height="605" alt="image" src="https://github.com/user-attachments/assets/3a57ace7-bdb7-48db-8789-c9d97b959131" />
+
 ---
 **Question 44:** Creator lifetime value = total revenue / number of videos.
 ```sql
