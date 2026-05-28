@@ -76,7 +76,15 @@ SELECT creator_id ,number_of_videos,total_revenue, ROUND(total_revenue/number_of
 ---
 **Question 46:** Identify top comment contributors.
 ```sql
+SELECT commenter_name,COUNT(DISTINCT dv.video_id ) as total_videos_commented 
+FROM  daily_views dv 
+LEFT JOIN comments c ON dv.video_id = c.video_id
+WHERE commenter_name IS NOT NULL
+GROUP BY commenter_name
+ORDER BY total_videos_commented DESC
 ```
+<img width="1157" height="624" alt="image" src="https://github.com/user-attachments/assets/6f5cec19-bc44-4652-9f80-86daca4d5421" />
+
 ---
 **Question 47:** Videos with >20k impressions but no revenue.
 ```sql
