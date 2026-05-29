@@ -192,5 +192,13 @@ Low CTR + Low Click-to-View → Problems with both discovery and engagement.
 ---
 **Question 50:** Detect inconsistent data across daily metrics tables. ( Daily Views exist but no likes or dislikes for that day)
 ```sql
+SELECT dv.video_id,view_date,views , likes,dislikes
+FROM daily_views dv LEFT JOIN
+likes_dislikes ld ON 
+dv.video_id = ld.video_id AND dv.view_date = ld.record_date
+WHERE likes IS NULL AND dislikes IS NULL 
+ORDER BY dv.video_id ,view_date
 ```
+<img width="1591" height="346" alt="image" src="https://github.com/user-attachments/assets/389ba476-82aa-45ea-9f8b-826cb2f19918" />
+
 ---
