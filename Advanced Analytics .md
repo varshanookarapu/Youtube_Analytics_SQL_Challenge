@@ -190,7 +190,7 @@ Low CTR + Low Click-to-View → Problems with both discovery and engagement.
 <img width="1875" height="534" alt="image" src="https://github.com/user-attachments/assets/1f720d3a-609d-4639-a94b-458cb953a157" />
 
 ---
-**Question 50:** Detect inconsistent data across daily metrics tables.
+**Question 50:** Detect inconsistent data across daily metrics tables. ( Daily Views exist but no likes or dislikes for that day)
 ```sql
 ```
 ---
