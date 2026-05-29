@@ -48,6 +48,17 @@ ORDER BY video_id,view_date
 ---
 **Question 42:** Creator retention: % of videos still getting views after 90 days.
 ```sql
+WITH cte AS
+(
+SELECT video_id, view_date, 
+LAG(view_date) OVER(PARTITION BY video_id ORDER BY view_date) as previous_view_date,
+LEAD(view_date) OVER(PARTITION BY video_id ORDER BY view_date) as next_view_date,
+views
+FROM daily_views 
+ORDER BY video_id,view_date
+)
+
+SELECT *, view_date - previous_view_date as days FROM cte
 ```
 ---
 **Question 43:** Find videos causing highest drop-off (low avg_view_duration vs duration).
