@@ -170,7 +170,25 @@ ORDER BY category
 ---
 **Question 49:** Funnel analysis: impressions → clicks → views → watch_time.
 ```sql
+SELECT video_id, SUM(views) as total_views, SUM(clicks) as total_clicks, SUM(impressions) as total_impressions,SUM(watch_time_seconds) as total_watch_time_seconds, 
+CASE WHEN  SUM(impressions) = 0 THEN 0 ELSE ( SUM(clicks)*1.0 /SUM(impressions) ) END as ctr ,
+CASE WHEN SUM(clicks)= 0 THEN 0 ELSE SUM(views)*1.0/SUM(clicks)  END as click_to_view
+FROM daily_views
+GROUP BY video_id
+ORDER BY video_id
+LIMIT 10
+
+-- Interpretation 
+
+High CTR + High Click-to-View → Attractive and delivers what users expect.
+High CTR + Low Click-to-View → Clickbait risk or mismatch between expectation and content.
+Low CTR + High Click-to-View → Content is valuable, but not attracting enough clicks.
+Low CTR + Low Click-to-View → Problems with both discovery and engagement.
+
+-- For instance "Video 1001 had a CTR of 6.83%, which means that out of 54,240 times the video thumbnail or link was shown to users, about 6.83% resulted in a click. In absolute terms, 3,702 clicks were generated from 54,240 impressions. This indicates the thumbnail, title, or placement was reasonably effective at attracting user interest."
 ```
+<img width="1875" height="534" alt="image" src="https://github.com/user-attachments/assets/1f720d3a-609d-4639-a94b-458cb953a157" />
+
 ---
 **Question 50:** Detect inconsistent data across daily metrics tables.
 ```sql
